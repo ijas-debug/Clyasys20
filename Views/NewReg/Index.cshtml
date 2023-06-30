@@ -1,0 +1,256 @@
+﻿@model MVC_Reg_User.Models.UserClass
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sign up</h2>
+
+
+@using (Html.BeginForm("Index","NewReg", FormMethod.Post, new {enctype="multipart/form-data"})) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Label("Male")
+            @Html.RadioButtonFor(model => model.Gender, "Male")
+            @Html.Label("Female")
+            @Html.RadioButtonFor(model => model.Gender, "Female")
+            @Html.Label("Others")
+            @Html.RadioButtonFor(model => model.Gender, "Others")
+
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", rows = 4 })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="state" name="state" onchange="populateCities()" class="form-control" required>
+                <option value="" style="color: #518db4;">Select State</option>
+                <option value="" style="color: #518db4;">Select State</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="city" name="city" class="form-control" required>
+                <option style="color: #518db4;" value="">Select City</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <script>
+        //to select state and city
+
+        function populateCities() {
+            var stateDropdown = document.getElementById("state");
+            var cityDropdown = document.getElementById("city");
+            var selectedState = stateDropdown.value;
+
+
+            cityDropdown.innerHTML = "";
+
+
+            if (selectedState === "Andaman and Nicobar Islands") {
+                var cities = ["Port Blair", "Car Nicobar", "Havelock Island"];
+            } else if (selectedState === "Andhra Pradesh") {
+                var cities = ["Hyderabad", "Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"];
+            } else if (selectedState === "Arunachal Pradesh") {
+                var cities = ["Itanagar", "Naharlagun", "Pasighat", "Tawang", "Ziro"];
+            } else if (selectedState === "Assam") {
+                var cities = ["Guwahati", "Jorhat", "Silchar", "Dibrugarh", "Tezpur"];
+            } else if (selectedState === "Bihar") {
+                var cities = ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga"];
+            } else if (selectedState === "Chandigarh") {
+                var cities = ["Chandigarh"];
+            } else if (selectedState === "Chhattisgarh") {
+                var cities = ["Raipur", "Bhilai", "Bilaspur", "Korba", "Durg"];
+            } else if (selectedState === "Delhi") {
+                var cities = ["New Delhi", "Gurgaon", "Noida", "Faridabad", "Ghaziabad"];
+            } else if (selectedState === "Goa") {
+                var cities = ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda"];
+            } else if (selectedState === "Gujarat") {
+                var cities = ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Gandhinagar", "Anand", "Navsari"];
+            } else if (selectedState === "Haryana") {
+                var cities = ["Gurgaon", "Faridabad", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula"];
+            } else if (selectedState === "Himachal Pradesh") {
+                var cities = ["Shimla", "Manali", "Dharamshala", "Kullu", "Mandi"];
+            } else if (selectedState === "Jammu and Kashmir") {
+                var cities = ["Srinagar", "Jammu", "Leh", "Gulmarg", "Pahalgam"];
+            } else if (selectedState === "Jharkhand") {
+                var cities = ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Hazaribagh"];
+            } else if (selectedState === "Karnataka") {
+                var cities = ["Bangalore", "Mysore", "Hubli", "Mangalore", "Belgaum"];
+            } else if (selectedState === "Kerala") {
+                var cities = ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kollam"];
+            } else if (selectedState === "Tamil Nadu") {
+                var cities = ["Chennai", "Coimbatore", "Madurai", "Trichy", "Salem"];
+            } else if (selectedState === "Maharashtra") {
+                var cities = ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane"];
+            } else if (selectedState === "Ladakh") {
+                var cities = ["Leh", "Kargil"];
+            } else if (selectedState === "Ladakh") {
+                var cities = ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain"];
+
+            }
+
+
+
+            for (var i = 0; i < cities.length; i++) {
+                var option = document.createElement("option");
+                option.text = cities[i];
+                option.value = cities[i];
+                cityDropdown.add(option);
+            }
+        }
+
+    </script>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Uimg, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="file" />
+
+            @Html.ValidationMessageFor(model => model.Uimg, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Registration" class="btn btn-primary" />
+        </div>
+    </div>
+    @Html.ViewData["Message"]
+</div>
+}
+
+<div>
+    @Html.ActionLink("Go to Login", "Index", "Login")
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
